@@ -9,6 +9,7 @@ verify_ssl = true
 fastapi = "*"
 uvicorn = "*"
 sqlalchemy = "*"
+databases = {extras = ["postgresql"],version = "*"}
 
 [requires]
 python_version = "3.6"
