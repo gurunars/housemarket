@@ -1,6 +1,13 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
+
 
 api = FastAPI()
+
+
+class Item(BaseModel):
+    id: int
+    title: str
 
 
 items = {
@@ -19,5 +26,6 @@ async def get_item(item_id: int):
 
 
 @api.post("/items")
-async def create_item():
-    return "Created"
+async def create_item(item: Item):
+    if item.id not in items:
+        items[item.id] = item
