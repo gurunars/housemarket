@@ -1,2 +1,4 @@
-FROM tiangolo/uvicorn-gunicorn-fastapi:latest
+FROM python:alpine
+
+
 
