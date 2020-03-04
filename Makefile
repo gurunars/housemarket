@@ -1,2 +1,2 @@
 dev:
-	pipenv uvicorn api.entrypoint:app --reload
+	pipenv run uvicorn api.entrypoint:app --reload
