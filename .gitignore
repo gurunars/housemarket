@@ -1,3 +1,5 @@
+*.db
+.idea
+.mypy_cache
 *.pyc
-venv
 *.egg-info
