@@ -1,22 +1,18 @@
 from fastapi import FastAPI, status, HTTPException
 from typing import List, Dict
 
-from .model import Item, get_session
+from .model import Item, get_items
 
 
 api = FastAPI()
 
 
-items: Dict = {
-    42: dict(id=42, title="Title")
-}
-
-
 @api.get("/items", response_model=List[Item], status_code=status.HTTP_200_OK)
-async def get_items(start_from: int = 0, limit: int = 10):
-    return sorted(items.values())[start_from : start_from + limit]
+def _get_items(start_from: int = 0, limit: int = 10):
+    return get_items(start_from, limit)
 
 
+"""
 @api.get("/items/{item_id}", response_model=Item, status_code=status.HTTP_200_OK)
 async def get_item(item_id: int):
     if item_id not in items:
@@ -39,3 +35,4 @@ async def put_item(item: Item):
 @api.put("/items", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_item(item_id: int):
     items.pop(item_id, None)
+"""
