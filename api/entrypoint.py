@@ -1,14 +1,10 @@
 from fastapi import FastAPI, status, HTTPException
-from pydantic import BaseModel, Field
 from typing import List, Dict
+
+from .model import Item
 
 
 api = FastAPI()
-
-
-class Item(BaseModel):
-    id: int = Field(..., description="Unique ID")
-    title: str = Field(..., description="Title of stuff", max_length=40)
 
 
 items: Dict = {
