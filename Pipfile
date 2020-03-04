@@ -4,12 +4,10 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-mypy = "*"
 
 [packages]
 fastapi = "*"
 uvicorn = "*"
-mypy = "*"
 
 [requires]
 python_version = "3.6"

@@ -1,4 +1,4 @@
 {
-    "python.jediEnabled": true,
+    "python.jediEnabled": false,
     "python.pythonPath": "/home/gurunars/.local/share/virtualenvs/housemarket-5uq0tt57/bin/python"
 }
