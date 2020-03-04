@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import List
+from typing import List, Dict
 
 
 api = FastAPI()
@@ -11,7 +11,7 @@ class Item(BaseModel):
     title: str
 
 
-items = {
+items: Dict = {
     42: dict(id=42, title="Title")
 }
 
@@ -28,6 +28,5 @@ async def get_item(item_id: int) -> Item:
 
 @api.post("/items")
 async def create_item(item: Item) -> None:
-    a = 1 + "fff" + 11.0 + True
     if item.id not in items:
         items[item.id] = item
