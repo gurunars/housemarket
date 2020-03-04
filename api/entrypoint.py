@@ -1,7 +1,7 @@
 from fastapi import FastAPI, status, HTTPException
 from typing import List, Dict
 
-from .model import Item
+from .model import Item, get_session
 
 
 api = FastAPI()
