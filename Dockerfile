@@ -20,6 +20,6 @@ WORKDIR /app
 
 RUN pipenv install --system --deploy --ignore-pipfile
 
-COPY ./api /app/
+COPY ./api /app/api
 
 CMD ["uvicorn", "api.entrypoint:api", "--host", "0.0.0.0", "--port", "80"]
