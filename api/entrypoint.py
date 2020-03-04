@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from typing import List
 
 
 api = FastAPI()
@@ -16,16 +17,17 @@ items = {
 
 
 @api.get("/items")
-async def get_items(start_from: int = 0, limit: int = 10):
+async def get_items(start_from: int = 0, limit: int = 10) -> List[Item]:
     return sorted(items.values())[start_from : start_from + limit]
 
 
 @api.get("/items/{item_id}")
-async def get_item(item_id: int):
+async def get_item(item_id: int) -> Item:
     return items[item_id]
 
 
 @api.post("/items")
-async def create_item(item: Item):
+async def create_item(item: Item) -> None:
+    a = 1 + "fff" + 11.0 + True
     if item.id not in items:
         items[item.id] = item
