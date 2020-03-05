@@ -1,4 +1,4 @@
-from fastapi import FastAPI, status, HTTPException
+from fastapi import FastAPI, status, HTTPException, UploadFile, File
 from typing import List
 
 from .item import (
@@ -50,3 +50,8 @@ async def _put_item(item_id: int, item: ItemBody):
 @api.delete("/items", status_code=status.HTTP_204_NO_CONTENT)
 async def _delete_item(item_id: int):
     delete_item(item_id)
+
+
+@api.post("/uploadfile/")
+async def create_upload_file(file: UploadFile = File(...)):
+    return {"filename": file.filename}
