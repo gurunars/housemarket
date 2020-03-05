@@ -21,26 +21,30 @@ class DbItem(Base):
     id: int = Column(Integer, primary_key=True)
     title: str = Column(String, max_length=40)
 
+    def to_item(self):
+        return Item(id=self.id, title=self.title)
 
-def _to_item(item: DbItem):
-    return Item(id=item.id, title=item.title)
-
-
-def _to_db_item(item: Item):
-    return DbItem(id=item.id, title=item.title)
+    @staticmethod
+    def from_item(item: Item):
+        return DbItem(id=item.id, title=item.title)
 
 
 def get_items(start_from: int = 0, limit: int = 10) -> List[Item]:
     with create_session() as session:
         return [
-            _to_item(it)
+            it.to_item()
             for it in session.query(DbItem).offset(start_from).limit(limit).all()
         ]
 
 
 def create_item(item: Item):
     with create_session() as session:
-        session.add(_to_db_item(item))
+        session.add(DbItem.from_item(item))
+
+
+def get_item_count():
+    with create_session() as session:
+        return session.query(DbItem).count()
 
 
 def exists_item(item: Item) -> bool:
@@ -52,9 +56,7 @@ def exists_item(item: Item) -> bool:
 
 def get_item(item_id: int) -> Optional[Item]:
     with create_session() as session:
-        return _to_item(
-            session.query(DbItem).filter(DbItem.id == item_id).first()
-        )
+        return session.query(DbItem).filter(DbItem.id == item_id).first().to_item()
 
 
 def delete_item(item_id: int):

@@ -6,14 +6,20 @@ from .item import (
     put_item, delete_item
 )
 from .db import init_db
+from .fixtures import init_fixtures
 
 
 api = FastAPI()
 
 
 @api.on_event("startup")
-async def startup_event():
+async def create_db():
     init_db()
+
+
+@api.on_event("startup")
+async def create_fixtures():
+    init_fixtures()
 
 
 @api.get("/items", response_model=List[Item], status_code=status.HTTP_200_OK)
