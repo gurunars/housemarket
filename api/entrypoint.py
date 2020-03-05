@@ -10,7 +10,10 @@ from .db import init_db
 
 api = FastAPI()
 
-init_db()
+
+@api.on_event("startup")
+async def startup_event():
+    init_db()
 
 
 @api.get("/items", response_model=List[Item], status_code=status.HTTP_200_OK)
