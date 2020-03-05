@@ -10,6 +10,7 @@ fastapi = "*"
 uvicorn = "*"
 sqlalchemy = "*"
 databases = {extras = ["sqlite"],version = "*"}
+python-multipart = "*"
 
 [requires]
 python_version = "3.6"
