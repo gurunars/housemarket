@@ -1,8 +1,8 @@
 FROM python:alpine
 
 RUN apk add --update-cache \
-    python \
-    python-dev \
+    python3 \
+    python3-dev \
     py-pip \
     build-base \
   && rm -rf /var/cache/apk/*
